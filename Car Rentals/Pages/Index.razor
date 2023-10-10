@@ -1,0 +1,131 @@
+﻿@page "/"
+@using Car_Rental.Business.Classes;
+@using Car_Rental.Common.Classes;
+@using Car_Rental.Common.Enums;
+@inject BookingProcessor bp
+
+<head>
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+
+<PageTitle>Index</PageTitle>
+
+<body>
+
+    <header>
+        <h1>Car Rentals</h1>
+    </header>
+
+    <section class="vehicles p-3 my-4 bg-body rounded-1">
+        <h4 class="p-2">Vehicles</h4>
+
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">RegNo</th>
+                    <th scope="col">Make</th>
+                    <th scope="col">Vehicle Type</th>
+                    <th scope="col">Odometer</th>
+                    <th scope="col">Cost/km</th>
+                    <th scope="col">$/day</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var v in bp.GetVehicles())
+                {
+                    <tr>
+                        <th scope="row">@v.RegNo</th>
+                        <td>@v.Make</td>
+                        <td>@v.VehicleType</td>
+                        <td>@v.Odometer</td>
+                        <td>@v.CostKm</td>
+                        <td>@v.CostDay</td>
+                        @if (v.VehicleStatus == VehicleStatuses.Booked)
+                        {
+                            <td><p class="car-status bg-danger">@v.VehicleStatus</p></td>
+                        }
+                        else
+                        {
+                            <td><p class="car-status bg-success">@v.VehicleStatus</p></td>
+                        }
+                    </tr>
+                }
+                
+            </tbody>
+        </table>
+    </section>
+
+    <section class="bookings p-3 my-4 bg-body rounded-1">
+        <h4 class="p-2">Bookings</h4>
+
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">RegNo</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Km Rented</th>
+                    <th scope="col">Km Returned</th>
+                    <th scope="col">Rented</th>
+                    <th scope="col">Returned</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(bp.GetBookings() is not null)
+                {
+                    @foreach (var b in bp.GetBookings())
+                    {
+                        <tr>
+                            <th scope="row">@b.Vehicle.RegNo</th>
+                            <td>@b.Customer.LastName, @b.Customer.FirstName (@b.Customer.Id)</td>
+                            <td>@b.KmRented</td>
+                            <td>@b.KmReturned</td>
+                            <td>@b.DateRented.ToString("yyyy-MM-dd")</td>
+                            <td>@(b.DateReturned != null ? b.DateReturned.Value.ToString("yyyy-MM-dd") : "")</td>
+                            <td>@b.Cost</td>
+                            @if(b.BookingSatus == BookingSatus.Closed)
+                            {
+                                <td><p class="car-status bg-danger">@b.BookingSatus</p></td>
+                            }
+                            else
+                            {
+                                <td><p class="car-status bg-success">@b.BookingSatus</p></td>
+                            }
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </section>
+
+    <section class="customers p-3 my-4 bg-body rounded-1">
+        <h4 class="p-2">Customers</h4>
+
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">SSN</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">First Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(bp.GetCustomers() is not null)
+                {
+                    @foreach(var c in bp.GetCustomers())
+                    {
+                        <tr>
+                            <th scope="row">@c.Id</th>
+                            <td>@c.LastName</td>
+                            <td>@c.FirstName</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </section>
+
+</body>
