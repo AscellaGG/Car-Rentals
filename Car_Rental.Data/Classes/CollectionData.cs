@@ -19,7 +19,7 @@ public class CollectionData : IData
         _vehicles.Add(new Car("GHI537", VehicleTypes.Sedan, "Saab", 20000, 1, 100, VehicleStatuses.Booked));
         _vehicles.Add(new Car("JFI236", VehicleTypes.Sedan, "Tesla", 1000, 3, 100, VehicleStatuses.Booked));
         _vehicles.Add(new Car("ORT372", VehicleTypes.Van, "Jeep", 5000, 1.5, 300, VehicleStatuses.Available));
-        _vehicles.Add(new Car("OWN472", VehicleTypes.Motorcycle, "Yamaha", 30000, 0.5, 50, VehicleStatuses.Available));
+        _vehicles.Add(new Motorcycle("OWN472", VehicleTypes.Motorcycle, "Yamaha", 30000, 0.5, 50, VehicleStatuses.Available));
 
         _customers.Add(new Customer("Jane", "Doe", 24467));
         _customers.Add(new Customer("John", "Doe", 23457));

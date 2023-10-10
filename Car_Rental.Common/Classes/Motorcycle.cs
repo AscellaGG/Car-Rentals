@@ -10,11 +10,14 @@ namespace Car_Rental.Common.Classes;
 
 public class Motorcycle : IVehicle
 {
-    public string RegNo { get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
-    public VehicleTypes VehicleType { get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
-    public string Make { get => throw new NotImplementedException(); init => throw new NotImplementedException(); }
-    public int Odometer { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public double CostKm { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public int CostDay { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public VehicleStatuses VehicleStatus { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string RegNo { get; init; }
+    public VehicleTypes VehicleType { get; init; }
+    public string Make { get; init; }
+    public int Odometer { get; set; }
+    public double CostKm { get; set; }
+    public int CostDay { get; set; }
+    public VehicleStatuses VehicleStatus { get; set; }
+
+    public Motorcycle(string regNo, VehicleTypes vehicleType, string make, int odometer, double costKm, int costDay, VehicleStatuses vehicleStatus) =>
+    (RegNo, VehicleType, Make, Odometer, CostKm, CostDay, VehicleStatus) = (regNo, vehicleType, make, odometer, costKm, costDay, vehicleStatus);
 }
