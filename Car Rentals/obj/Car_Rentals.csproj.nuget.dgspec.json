@@ -1,0 +1,255 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car Rentals/Car_Rentals.csproj": {}
+  },
+  "projects": {
+    "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car Rentals/Car_Rentals.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car Rentals/Car_Rentals.csproj",
+        "projectName": "Car_Rentals",
+        "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car Rentals/Car_Rentals.csproj",
+        "packagesPath": "/Users/otiliaschiff/.nuget/packages/",
+        "outputPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car Rentals/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/otiliaschiff/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/Car_Rental.Business.csproj": {
+                "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/Car_Rental.Business.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "browser-wasm": {
+          "#import": []
+        }
+      }
+    },
+    "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/Car_Rental.Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/Car_Rental.Business.csproj",
+        "projectName": "Car_Rental.Business",
+        "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/Car_Rental.Business.csproj",
+        "packagesPath": "/Users/otiliaschiff/.nuget/packages/",
+        "outputPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/otiliaschiff/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj": {
+                "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj"
+              },
+              "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Data/Car_Rental.Data.csproj": {
+                "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Data/Car_Rental.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj",
+        "projectName": "Car_Rental.Common",
+        "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj",
+        "packagesPath": "/Users/otiliaschiff/.nuget/packages/",
+        "outputPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/otiliaschiff/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Data/Car_Rental.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Data/Car_Rental.Data.csproj",
+        "projectName": "Car_Rental.Data",
+        "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Data/Car_Rental.Data.csproj",
+        "packagesPath": "/Users/otiliaschiff/.nuget/packages/",
+        "outputPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Data/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/otiliaschiff/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj": {
+                "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

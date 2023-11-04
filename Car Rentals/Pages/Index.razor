@@ -1,11 +1,12 @@
 ﻿@page "/"
 @using Car_Rental.Business.Classes;
-@using Car_Rental.Common.Classes;
 @using Car_Rental.Common.Enums;
 @inject BookingProcessor bp
+@inject NewVehicle NewVehicle
 
 <head>
     <link href="css/index.css" rel="stylesheet" />
+   
 </head>
 
 <PageTitle>Index</PageTitle>
@@ -19,7 +20,7 @@
     <section class="vehicles p-3 my-4 bg-body rounded-1">
         <h4 class="p-2">Vehicles</h4>
 
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped vehicleTable">
             <thead>
                 <tr>
                     <th scope="col">RegNo</th>
@@ -28,19 +29,50 @@
                     <th scope="col">Odometer</th>
                     <th scope="col">Cost/km</th>
                     <th scope="col">$/day</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                    <th scope="col" style="width:100px;">Status</th>
                 </tr>
             </thead>
             <tbody>
+
+                <tr>
+                    <td><input @bind="NewVehicle.regNo"></td>
+                    <td><input @bind="NewVehicle.make"></td>
+                    <td>
+                        <select class="form-select" aria-label="Default select example" @bind="NewVehicle.type">
+                            <option value="@VehicleTypes.Combi">Combi</option>
+                            <option value="@VehicleTypes.Sedan">Sedan</option>
+                            <option value="@VehicleTypes.Van">Van</option>
+                            <option value="@VehicleTypes.Motorcycle">Motorcycle</option>
+                        </select>
+                    </td>
+                    <td><input @bind="NewVehicle.odometer"></td>
+                    <td><input @bind="NewVehicle.costKm"></td>
+                    <td><input @bind="NewVehicle.costDay"></td>
+                    <td><button class="btn btn-primary" onclick="@(()=>bp.AddVehicle(NewVehicle))">Add</button></td>
+                    <td></td>
+                </tr>
+
                 @foreach (var v in bp.GetVehicles())
                 {
                     <tr>
-                        <th scope="row">@v.RegNo</th>
+                        <th>@v.RegNo</th>
                         <td>@v.Make</td>
                         <td>@v.VehicleType</td>
                         <td>@v.Odometer</td>
                         <td>@v.CostKm</td>
                         <td>@v.CostDay</td>
+                        <tr>
+                            <td>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value="">x</option>
+                                    <option value="">y</option>
+                                    <option value="">z</option>
+                                </select>
+                            </td>
+                            <td><button type="button" class="btn btn-primary">Rent</button></td>
+                        </tr>
+
                         @if (v.VehicleStatus == VehicleStatuses.Booked)
                         {
                             <td><p class="car-status bg-danger">@v.VehicleStatus</p></td>
@@ -51,7 +83,6 @@
                         }
                     </tr>
                 }
-                
             </tbody>
         </table>
     </section>
@@ -79,7 +110,7 @@
                     {
                         <tr>
                             <th scope="row">@b.Vehicle.RegNo</th>
-                            <td>@b.Customer.LastName, @b.Customer.FirstName (@b.Customer.Id)</td>
+                            <td>@b.Customer.LastName, @b.Customer.FirstName (@b.Customer.SSN)</td>
                             <td>@b.KmRented</td>
                             <td>@b.KmReturned</td>
                             <td>@b.DateRented.ToString("yyyy-MM-dd")</td>
@@ -118,7 +149,7 @@
                     @foreach(var c in bp.GetCustomers())
                     {
                         <tr>
-                            <th scope="row">@c.Id</th>
+                            <th scope="row">@c.SSN</th>
                             <td>@c.LastName</td>
                             <td>@c.FirstName</td>
                         </tr>

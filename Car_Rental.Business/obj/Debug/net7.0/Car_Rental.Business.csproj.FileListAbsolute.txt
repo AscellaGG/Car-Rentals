@@ -1,0 +1,17 @@
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/bin/Debug/net7.0/Car_Rental.Business.deps.json
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/bin/Debug/net7.0/Car_Rental.Business.dll
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/bin/Debug/net7.0/Car_Rental.Business.pdb
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/bin/Debug/net7.0/Car_Rental.Common.dll
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/bin/Debug/net7.0/Car_Rental.Data.dll
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/bin/Debug/net7.0/Car_Rental.Common.pdb
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/bin/Debug/net7.0/Car_Rental.Data.pdb
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/obj/Debug/net7.0/Car_Rental.Business.csproj.AssemblyReference.cache
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/obj/Debug/net7.0/Car_Rental.Business.GeneratedMSBuildEditorConfig.editorconfig
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/obj/Debug/net7.0/Car_Rental.Business.AssemblyInfoInputs.cache
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/obj/Debug/net7.0/Car_Rental.Business.AssemblyInfo.cs
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/obj/Debug/net7.0/Car_Rental.Business.csproj.CoreCompileInputs.cache
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/obj/Debug/net7.0/Car_Rental.Business.csproj.CopyComplete
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/obj/Debug/net7.0/Car_Rental.Business.dll
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/obj/Debug/net7.0/refint/Car_Rental.Business.dll
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/obj/Debug/net7.0/Car_Rental.Business.pdb
+/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/obj/Debug/net7.0/ref/Car_Rental.Business.dll

@@ -13,5 +13,6 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 builder.Services.AddSingleton<IData, CollectionData>();
 builder.Services.AddSingleton<BookingProcessor>();
+builder.Services.AddSingleton<NewVehicle>();
 
 await builder.Build().RunAsync();

@@ -5,14 +5,29 @@
 
 header
 {
-    >margin: 2em 0;
+    margin: 2em 0;
+}
+
+.vehicleTable {
+    table-layout: auto;
+    width: 100%;
+}
+
+.rent{
+    float:left;
+}
+
+.car-status {
+    color: white;
+    border-radius: 25px;
+    text-align: center;
+    margin: 0;
+    width: 150px;
 }
 
 
 
-.car-status{
-    color: white;
-    border-radius:25px;
-    text-align: center;
-    margin: 0;
+.carForm{
+    display: block;
+    float: left;
 }

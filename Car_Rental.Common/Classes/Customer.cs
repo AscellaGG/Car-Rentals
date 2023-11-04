@@ -11,12 +11,15 @@ public class Customer : IPerson
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
+
+    public int SSN {get; init; }
     public int Id { get; init; } // init - Kan endast sättas av konstruktorn, går inte att ändra
 
-    public Customer(string firstName, string lastName, int id)
+    public Customer(int id, string firstName, string lastName, int ssn)
     {
+        Id = id;
         FirstName = firstName;
         LastName = lastName;
-        Id = id;
+        SSN = ssn;
     }
 }
