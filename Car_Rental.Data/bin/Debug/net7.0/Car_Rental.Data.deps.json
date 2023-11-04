@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "Car_Rental.Data/1.0.0": {
+        "dependencies": {
+          "Car_Rental.Common": "1.0.0"
+        },
+        "runtime": {
+          "Car_Rental.Data.dll": {}
+        }
+      },
+      "Car_Rental.Common/1.0.0": {
+        "runtime": {
+          "Car_Rental.Common.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Car_Rental.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Car_Rental.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
