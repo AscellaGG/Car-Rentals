@@ -32,7 +32,7 @@ public class Booking : IBooking
         BookingSatus = default;
     }
 
-    public void ReturnVehicle(DateTime dateReturned, int kmReturned)
+    public void Return(DateTime dateReturned, int kmReturned)
     {
         BookingSatus = BookingSatus.Closed;
         DateReturned = dateReturned;

@@ -16,5 +16,5 @@ public interface IBooking
     public double? Cost {  get; set; }
     public BookingSatus BookingSatus { get; set; }
 
-    public void ReturnVehicle(DateTime dateReturned, int kmReturned);
+    public void Return(DateTime dateReturned, int kmReturned);
 }

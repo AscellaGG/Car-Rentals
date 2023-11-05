@@ -1,34 +1,41 @@
 {
   "format": 1,
   "restore": {
-    "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car Rentals/Car_Rentals.csproj": {}
+    "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car Rentals\\Car_Rentals.csproj": {}
   },
   "projects": {
-    "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car Rentals/Car_Rentals.csproj": {
+    "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car Rentals\\Car_Rentals.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car Rentals/Car_Rentals.csproj",
+        "projectUniqueName": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car Rentals\\Car_Rentals.csproj",
         "projectName": "Car_Rentals",
-        "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car Rentals/Car_Rentals.csproj",
-        "packagesPath": "/Users/otiliaschiff/.nuget/packages/",
-        "outputPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car Rentals/obj/",
+        "projectPath": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car Rentals\\Car_Rentals.csproj",
+        "packagesPath": "C:\\Users\\otili\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car Rentals\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/otiliaschiff/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\otili\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/Car_Rental.Business.csproj": {
-                "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/Car_Rental.Business.csproj"
+              "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Business\\Car_Rental.Business.csproj": {
+                "projectPath": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Business\\Car_Rental.Business.csproj"
               }
             }
           }
@@ -64,12 +71,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[7.0.11, 7.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -78,34 +91,41 @@
         }
       }
     },
-    "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/Car_Rental.Business.csproj": {
+    "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Business\\Car_Rental.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/Car_Rental.Business.csproj",
+        "projectUniqueName": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Business\\Car_Rental.Business.csproj",
         "projectName": "Car_Rental.Business",
-        "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/Car_Rental.Business.csproj",
-        "packagesPath": "/Users/otiliaschiff/.nuget/packages/",
-        "outputPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Business/obj/",
+        "projectPath": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Business\\Car_Rental.Business.csproj",
+        "packagesPath": "C:\\Users\\otili\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Business\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/otiliaschiff/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\otili\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj": {
-                "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj"
+              "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Common\\Car_Rental.Common.csproj": {
+                "projectPath": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Common\\Car_Rental.Common.csproj"
               },
-              "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Data/Car_Rental.Data.csproj": {
-                "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Data/Car_Rental.Data.csproj"
+              "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Data\\Car_Rental.Data.csproj": {
+                "projectPath": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Data\\Car_Rental.Data.csproj"
               }
             }
           }
@@ -135,27 +155,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj": {
+    "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Common\\Car_Rental.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj",
+        "projectUniqueName": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Common\\Car_Rental.Common.csproj",
         "projectName": "Car_Rental.Common",
-        "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj",
-        "packagesPath": "/Users/otiliaschiff/.nuget/packages/",
-        "outputPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/obj/",
+        "projectPath": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Common\\Car_Rental.Common.csproj",
+        "packagesPath": "C:\\Users\\otili\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Common\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/otiliaschiff/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\otili\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -189,35 +216,42 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Data/Car_Rental.Data.csproj": {
+    "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Data\\Car_Rental.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Data/Car_Rental.Data.csproj",
+        "projectUniqueName": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Data\\Car_Rental.Data.csproj",
         "projectName": "Car_Rental.Data",
-        "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Data/Car_Rental.Data.csproj",
-        "packagesPath": "/Users/otiliaschiff/.nuget/packages/",
-        "outputPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Data/obj/",
+        "projectPath": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Data\\Car_Rental.Data.csproj",
+        "packagesPath": "C:\\Users\\otili\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Data\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/otiliaschiff/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\otili\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj": {
-                "projectPath": "/Users/otiliaschiff/ITHS/Car-Rentals-master/Car_Rental.Common/Car_Rental.Common.csproj"
+              "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Common\\Car_Rental.Common.csproj": {
+                "projectPath": "C:\\Users\\otili\\Documents\\_iths\\Car Rentals\\Car_Rental.Common\\Car_Rental.Common.csproj"
               }
             }
           }
@@ -247,7 +281,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

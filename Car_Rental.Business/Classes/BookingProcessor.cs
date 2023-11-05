@@ -12,41 +12,80 @@ public class BookingProcessor
 
     private readonly IData _db;
 
-    public BookingProcessor(IData db) => _db = db; 
-    
+    public int SelectedSSN { get; set; }
+
+    public int ReturnedKM { get; set; }
+
+    public BookingProcessor(IData db) => _db = db;
+
     public IEnumerable<IPerson> GetCustomers()
     {
         return _db.GetPersons();
     }
 
+    public IPerson GetPerson(int ssn)
+    {
+        var customer = _db.Single<IPerson>(c => c.SSN == ssn);
+        return customer;
+    }
+
     public IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = default)
     {
-        return _db.GetVehicles(status);
+        //return _db.GetVehicles(status);
+        return _db.Get<IVehicle>(v => v != null);
     }
 
     public IEnumerable<IBooking> GetBookings()
     {
-        return _db.Get<IBooking>(_db.bookings, c => c.BookingSatus.Equals(BookingSatus.Open));
+        var bookings = _db.Get<IBooking>(b => b != null);
+        return bookings.OrderByDescending(b => b.DateRented);
+    }
+    public IBooking GetBooking(int vehicleID)
+    {
+        return _db.Single<IBooking>(b => b.Vehicle.Id == vehicleID);
     }
 
     public void AddVehicle(NewVehicle vehicle)
     {
-        //_db.AddVehicle(vehicle.regNo,vehicle.type,vehicle.make,vehicle.odometer,vehicle.costKm,vehicle.costDay);
-        
+        if (vehicle.Type == VehicleTypes.Motorcycle)
+        {
+            _db.Add<IVehicle>(new Motorcycle(_db.NextVehicleId, vehicle.RegNo, vehicle.Type, vehicle.Make, vehicle.Odometer, vehicle.CostKm, vehicle.CostDay, VehicleStatuses.Available));
+        }
+        else
+        {
+            _db.Add<IVehicle>(new Car(_db.NextVehicleId, vehicle.RegNo, vehicle.Type, vehicle.Make, vehicle.Odometer, vehicle.CostKm, vehicle.CostDay, VehicleStatuses.Available));
+        }
     }
 
-    public void Rent()
+    public void AddPerson(NewPerson person)
     {
+        _db.Add<IPerson>(new Customer(_db.NextPersonId, person.FirstName, person.LastName, person.SSN));
+    }
 
+    public void Rent(IPerson customer, IVehicle vehicle)
+    {
+        _db.RentVehicle(vehicle, customer);
+    }
+
+    public void ReturnVehicle(IVehicle vehicle)
+    {
+        _db.ReturnVehicle(GetBooking(vehicle.Id), ReturnedKM);
     }
 }
 
 public class NewVehicle
 {
-    public string regNo { get; set; }
-    public VehicleTypes type { get; set; }
-    public string make { get; set; }
-    public int odometer { get; set; }
-    public double costKm { get; set; }
-    public int costDay { get; set; }
+    public string RegNo { get; set; }
+    public VehicleTypes Type { get; set; }
+    public string Make { get; set; }
+    public int Odometer { get; set; }
+    public double CostKm { get; set; }
+    public int CostDay { get; set; }
+}
+
+public class NewPerson
+{
+    public int SSN { get; set; }
+    public string LastName { get; set; }
+    public string FirstName { get; set; } 
 }

@@ -7,18 +7,16 @@ namespace Car_Rental.Data.Interfaces;
 
 public interface IData
 {
-    public List<T> Get<T>(List<T> list, Func<T, bool>? expression = null) where T : class;
-    T? Single<T>(Expression<Func<T, bool>>? expression);
+    public List<T> Get<T>(Func<T, bool>? expression) where T : class;
+    public T? Single<T>(Func<T, bool>? expression) where T : class;
+    public void Add<T>(T item) where T : class;
 
-    public List<IBooking> bookings { get; set; }
-
-    public void Add<T>(T item);
     int NextVehicleId { get; }
     int NextPersonId { get; }
     int NextBookingId { get; }
 
-    IBooking RentVehicle(int vehicleId, int customerId);
-    IBooking ReturnVehicle(int vehicleId);
+    public void RentVehicle(IVehicle vehicle, IPerson customer);
+    public void ReturnVehicle(IBooking booking, int kmReturned);
 
     public IEnumerable<IPerson> GetPersons();
     public IEnumerable<IBooking> GetBookings();
