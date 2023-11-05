@@ -7,6 +7,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Car_Rental.Data.Classes;
 
@@ -132,3 +133,7 @@ public class CollectionData : IData
         booking.Cost = daysRented * booking.Vehicle.CostDay + (kmReturned - booking.KmRented) * booking.Vehicle.CostKm;
     }
 }
+
+// TODO: Klassen ska även implementera metoder för att hyra och lämna tillbaka fordon. IData interfacet ska ha default interface metoder som returnerar enum konstanterna som arrayer till drop-down kontrollerna i Razor sidan(orna) som används vid uthyrning av fordon.Använd Enum klassens GetNames metod för att hämta konstnternas namn.
+// TODO: BOKING PROCESSOR. RentVehicle metoden ska vara asynkron. Använd Task.Delay för att simulera tiden det tar att hämta data från ett API.
+// TODO: BOOKING PROCESSOR. Alla get, add etc
