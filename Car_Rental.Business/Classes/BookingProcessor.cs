@@ -6,27 +6,30 @@ using Car_Rental.Data.Interfaces;
 
 namespace Car_Rental.Business.Classes;
 
+// TODO: Errors, validate forms?
+
 public class BookingProcessor
 {
     //Get data and return to main
 
     private readonly IData _db;
+    
 
     public int SelectedSSN { get; set; }
-
-    public int ReturnedKM { get; set; }
+    public int? DistanceReturned { get; set; }
+    public bool InputDisabled { get; set; }
 
     public BookingProcessor(IData db) => _db = db;
 
-    public IEnumerable<IPerson> GetCustomers()
+    public IEnumerable<IBooking> GetBookings()
     {
-        return _db.GetPersons();
+        var bookings = _db.Get<IBooking>(b => b != null);
+        return bookings.OrderByDescending(b => b.DateRented);
     }
 
-    public IPerson GetPerson(int ssn)
+    public IEnumerable<IPerson> GetCustomers()
     {
-        var customer = _db.Single<IPerson>(c => c.SSN == ssn);
-        return customer;
+        return _db.Get<IPerson>(c => c != null);
     }
 
     public IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = default)
@@ -35,11 +38,14 @@ public class BookingProcessor
         return _db.Get<IVehicle>(v => v != null);
     }
 
-    public IEnumerable<IBooking> GetBookings()
+    public IPerson GetPerson(int ssn)
     {
-        var bookings = _db.Get<IBooking>(b => b != null);
-        return bookings.OrderByDescending(b => b.DateRented);
+        var customer = _db.Single<IPerson>(c => c.SSN == ssn);
+        return customer;
     }
+
+    public IVehicle GetVehicle(int vehicleId) => _db.Single<IVehicle>(v => v.Id.Equals(vehicleId));
+    
     public IBooking GetBooking(int vehicleID)
     {
         return _db.Single<IBooking>(b => b.Vehicle.Id == vehicleID);
@@ -49,11 +55,11 @@ public class BookingProcessor
     {
         if (vehicle.Type == VehicleTypes.Motorcycle)
         {
-            _db.Add<IVehicle>(new Motorcycle(_db.NextVehicleId, vehicle.RegNo, vehicle.Type, vehicle.Make, vehicle.Odometer, vehicle.CostKm, vehicle.CostDay, VehicleStatuses.Available));
+            _db.Add<IVehicle>(new Motorcycle(_db.NextVehicleId, vehicle.RegNo, vehicle.Type, vehicle.Make, vehicle.Odometer, vehicle.CostKm, vehicle.CostDay));
         }
         else
         {
-            _db.Add<IVehicle>(new Car(_db.NextVehicleId, vehicle.RegNo, vehicle.Type, vehicle.Make, vehicle.Odometer, vehicle.CostKm, vehicle.CostDay, VehicleStatuses.Available));
+            _db.Add<IVehicle>(new Car(_db.NextVehicleId, vehicle.RegNo, vehicle.Type, vehicle.Make, vehicle.Odometer, vehicle.CostKm, vehicle.CostDay));
         }
     }
 
@@ -62,15 +68,27 @@ public class BookingProcessor
         _db.Add<IPerson>(new Customer(_db.NextPersonId, person.FirstName, person.LastName, person.SSN));
     }
 
-    public void Rent(IPerson customer, IVehicle vehicle)
+    public async Task<IBooking> RentVehicle(IPerson customer, IVehicle vehicle)
     {
-        _db.RentVehicle(vehicle, customer);
+        InputDisabled = true;
+        await Task.Delay(500);
+        InputDisabled = false;
+
+        return _db.RentVehicle(vehicle, customer);
     }
 
-    public void ReturnVehicle(IVehicle vehicle)
+    public async Task<IBooking> ReturnVehicle(IVehicle vehicle)
     {
-        _db.ReturnVehicle(GetBooking(vehicle.Id), ReturnedKM);
+        InputDisabled = true;
+        await Task.Delay(500);
+        InputDisabled = false;
+
+        return _db.ReturnVehicle(GetBooking(vehicle.Id), (int)DistanceReturned);
     }
+
+    public string[] VehicleStatusNames => _db.VehicleStatusNames();
+    public string[] VehicleTypeNames => _db.VehicleTypeNames();
+    public VehicleTypes GetVehicleType(string name) => _db.GetVehicleType(name);
 }
 
 public class NewVehicle

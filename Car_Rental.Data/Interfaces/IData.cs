@@ -15,15 +15,11 @@ public interface IData
     int NextPersonId { get; }
     int NextBookingId { get; }
 
-    public void RentVehicle(IVehicle vehicle, IPerson customer);
-    public void ReturnVehicle(IBooking booking, int kmReturned);
-
-    public IEnumerable<IPerson> GetPersons();
-    public IEnumerable<IBooking> GetBookings();
-    public IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = default);
+    public IBooking RentVehicle(IVehicle vehicle, IPerson customer);
+    public IBooking ReturnVehicle(IBooking booking, int kmReturned);
 
     // Default Interface Methods
-    //public string[] VehicleStatusNames => Retunera enum konstanterna
-    //public string[] VehicleStatusNames => Retunera enum konstanterna
-    //public VehicleTypes GetVehicleType(string name) => Retunera en enum konstants värde med hjälp av konstantens namn
+    public string[] VehicleStatusNames() => Enum.GetNames(typeof(VehicleStatuses));
+    public string[] VehicleTypeNames() => Enum.GetNames(typeof(VehicleTypes));
+    public VehicleTypes GetVehicleType(string name) => (VehicleTypes)Enum.Parse(typeof(VehicleTypes), name);
 }

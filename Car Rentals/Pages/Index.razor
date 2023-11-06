@@ -38,22 +38,31 @@
             <tbody>
 
                 <tr>
-                    <td><input @bind="NewVehicle.RegNo"></td>
-                    <td><input @bind="NewVehicle.Make"></td>
+                    <td><input disabled="@bp.InputDisabled" @bind="NewVehicle.RegNo"></td>
+                    <td><input disabled="@bp.InputDisabled" @bind="NewVehicle.Make"></td>
                     <td>
-                        <select class="form-select" aria-label="Default select example" @bind="NewVehicle.Type">
-                            <option value="@VehicleTypes.Combi">Combi</option>
-                            <option value="@VehicleTypes.Sedan">Sedan</option>
-                            <option value="@VehicleTypes.Van">Van</option>
-                            <option value="@VehicleTypes.Motorcycle">Motorcycle</option>
+                        <select disabled="@bp.InputDisabled" class="form-select" aria-label="Default select example" @bind="NewVehicle.Type">
+                            @foreach(var t in bp.VehicleTypeNames)
+                            {
+                                <option value="@t">@t.ToString()</option>
+                            }
                         </select>
                     </td>
-                    <td><input type="number" min="0" @bind="NewVehicle.Odometer"></td>
-                    <td><input type="number" min="0" @bind="NewVehicle.CostKm"></td>
-                    <td><input type="number" min="0" @bind="NewVehicle.CostDay"></td>
+                    <td><input type="number" min="0" disabled="@bp.InputDisabled" @bind="NewVehicle.Odometer"></td>
+                    <td><input type="number" min="0" disabled="@bp.InputDisabled" @bind="NewVehicle.CostKm"></td>
+                    <td><input type="number" min="0" disabled="@bp.InputDisabled" @bind="NewVehicle.CostDay"></td>
                     <td></td>
-                    <td><button class="btn btn-primary" @onclick="(()=>bp.AddVehicle(NewVehicle))">Add</button></td>
-                    <td></td>
+                    <td><button disabled="@bp.InputDisabled" class="btn btn-primary" @onclick="(()=>bp.AddVehicle(NewVehicle))">Add</button></td>
+                    <td>
+                        @if(bp.InputDisabled)
+                        {
+                            <p class="car-status bg-warning">Processing...</p>
+                        }
+                        else
+                        {
+                            <p></p>
+                        }
+                    </td>
                 </tr>
 
                 @foreach (var v in bp.GetVehicles())
@@ -68,14 +77,15 @@
                         
                         @if (v.VehicleStatus == VehicleStatuses.Booked)
                         {
-                            <td></td>
-                            <td></td>
+                            <td><input disabled="@bp.InputDisabled" placeholder="Distance" @bind="bp.DistanceReturned"></td>
+                            <td><button disabled="@bp.InputDisabled" class="btn btn-primary" @onclick="async () => 
+                                await bp.ReturnVehicle(v)">Return</button></td>
                             <td><p class="car-status bg-danger">@v.VehicleStatus</p></td>                            
                         }
                         else
                         {
                             <td>
-                                <select class="form-select" aria-label="Default select example" @bind="bp.SelectedSSN">
+                                <select disabled="@bp.InputDisabled" class="form-select" aria-label="Default select example" @bind="bp.SelectedSSN">
                                     <option selected="selected" value="SSN" disabled>SSN</option>
                                     @foreach (var c in bp.GetCustomers())
                                     {
@@ -83,7 +93,8 @@
                                     }
                                 </select>
                             </td>
-                            <td><button type="button" class="btn btn-primary" @onclick="(()=>bp.Rent(bp.GetPerson(bp.SelectedSSN), v))">Rent</button></td>
+                            <td><button disabled="@bp.InputDisabled" type="button" class="btn btn-primary" @onclick="async () => 
+                                await bp.RentVehicle(bp.GetPerson(bp.SelectedSSN), v)">Rent</button></td>
                             <td><p class="car-status bg-success">@v.VehicleStatus</p></td>
                         }
                     </tr>
@@ -105,7 +116,6 @@
                     <th scope="col">Rented</th>
                     <th scope="col">Returned</th>
                     <th scope="col">Cost</th>
-                    <th scope="col">Actions</th>
                     <th scope="col">Status</th>
                 </tr>
             </thead>
@@ -116,27 +126,16 @@
                         <th scope="row">@b.Vehicle.RegNo</th>
                         <td>@b.Customer.LastName, @b.Customer.FirstName (@b.Customer.SSN)</td>
                         <td>@b.KmRented</td>
-                        <td>
-                            @if(b.KmReturned == null)
-                            {
-                                <input type="number" min="0" @bind="bp.ReturnedKM">
-                            }
-                            else
-                            {
-                                @b.KmReturned                                
-                            }
-                        </td>
+                        <td>@b.KmReturned</td>
                         <td>@b.DateRented.ToString("yyyy-MM-dd")</td>
                         <td>@(b.DateReturned != null ? b.DateReturned.Value.ToString("yyyy-MM-dd") : "")</td>
                         <td>@b.Cost</td>
                         @if (b.BookingSatus == BookingSatus.Closed)
                         {
-                            <td></td>
                             <td><p class="car-status bg-danger">@b.BookingSatus</p></td>
                         }
                         else
                         {
-                            <td><button class="btn btn-primary"  @onclick="(()=>bp.ReturnVehicle(b.Vehicle))">Return</button></td>
                             <td><p class="car-status bg-success">@b.BookingSatus</p></td>
                         }
                     </tr>
@@ -160,10 +159,10 @@
             <tbody>
 
                 <tr>
-                    <td><input @bind ="NewPerson.SSN" type="number" min="0" /></td>
-                    <td><input @bind="NewPerson.LastName"></td>
-                    <td><input @bind="NewPerson.FirstName"></td>
-                    <td><button class="btn btn-primary" @onclick="(()=>bp.AddPerson(NewPerson))">Add</button></td>
+                    <td><input disabled="@bp.InputDisabled" @bind ="NewPerson.SSN" type="number" min="0" /></td>
+                    <td><input disabled="@bp.InputDisabled" @bind="NewPerson.LastName"></td>
+                    <td><input disabled="@bp.InputDisabled" @bind="NewPerson.FirstName"></td>
+                    <td><button disabled="@bp.InputDisabled" class="btn btn-primary" @onclick="(()=>bp.AddPerson(NewPerson))">Add</button></td>
                 </tr>
 
                 @if(bp.GetCustomers() is not null)

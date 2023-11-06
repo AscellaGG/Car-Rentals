@@ -4,6 +4,6 @@ namespace Car_Rental.Common.Classes;
 
 public class Car : Vehicle
 {
-    public Car(int id, string regNo, VehicleTypes vehicleType, string make, int odometer, double costKm, int costDay, VehicleStatuses vehicleStatus) : base(id, regNo, vehicleType, make, odometer, costKm, costDay, vehicleStatus)
+    public Car(int id, string regNo, VehicleTypes vehicleType, string make, int odometer, double costKm, int costDay) : base(id, regNo, vehicleType, make, odometer, costKm, costDay)
     {}
 }

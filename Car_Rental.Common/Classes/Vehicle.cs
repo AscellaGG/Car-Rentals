@@ -14,6 +14,6 @@ public class Vehicle : IVehicle
     public int CostDay { get; set; }
     public VehicleStatuses VehicleStatus { get; set; }
 
-    public Vehicle(int id, string regNo, VehicleTypes vehicleType, string make, int odometer, double costKm, int costDay, VehicleStatuses vehicleStatus) =>
-    (Id, RegNo, VehicleType, Make, Odometer, CostKm, CostDay, VehicleStatus) = (id, regNo, vehicleType, make, odometer, costKm, costDay, vehicleStatus);
+    public Vehicle(int id, string regNo, VehicleTypes vehicleType, string make, int odometer, double costKm, int costDay) =>
+    (Id, RegNo, VehicleType, Make, Odometer, CostKm, CostDay, VehicleStatus) = (id, regNo, vehicleType, make, odometer, costKm, costDay, VehicleStatuses.Available);
 }

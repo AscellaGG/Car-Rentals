@@ -20,8 +20,9 @@ public class Booking : IBooking
     public double? Cost { get; set; }
     public BookingSatus BookingSatus { get; set; }
 
-    public Booking(IVehicle vehicle, IPerson customer, int kmRented, DateTime dateRented)
+    public Booking(int id, IVehicle vehicle, IPerson customer, int kmRented, DateTime dateRented)
     {
+        Id = id;
         Vehicle = vehicle;
         Customer = customer;
         KmRented = kmRented;
@@ -30,6 +31,14 @@ public class Booking : IBooking
         KmReturned = null;
         DateReturned = null;
         BookingSatus = default;
+        if(BookingSatus == BookingSatus.Open)
+        {
+            vehicle.VehicleStatus = VehicleStatuses.Booked;
+        }
+        else
+        {
+            vehicle.VehicleStatus = VehicleStatuses.Available;
+        }
     }
 
     public void Return(DateTime dateReturned, int kmReturned)
@@ -38,6 +47,7 @@ public class Booking : IBooking
         DateReturned = dateReturned;
         KmReturned= kmReturned;
         var daysRented = (dateReturned - DateRented).Days;
+        Vehicle.VehicleStatus = VehicleStatuses.Available;
 
         Cost = daysRented * Vehicle.CostDay + (kmReturned-KmRented) * Vehicle.CostKm;
     }
