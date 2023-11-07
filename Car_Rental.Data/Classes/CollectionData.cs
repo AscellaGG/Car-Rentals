@@ -44,15 +44,20 @@ public class CollectionData : IData
         _bookings[^1].Return(new DateTime(2023, 11, 6), 35000);
     }
 
-    public List<T> Get<T>(Func<T, bool>? expression) where T : class
+    public List<T> Reflection<T>() where T : class
     {
         var collections = GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
                 .FirstOrDefault(f => f.FieldType == typeof(List<T>) && f.IsInitOnly)
                 ?? throw new InvalidOperationException("Unsupported type");
-        
+
         var value = collections.GetValue(this) ?? throw new InvalidDataException();
 
-        var collection = ((List<T>)value).AsQueryable();
+        return (List<T>)value;
+    }
+
+    public List<T> Get<T>(Func<T, bool>? expression) where T : class
+    {
+        var collection = Reflection<T>().AsQueryable();
 
         if (expression is null) return collection.ToList();
 
@@ -61,13 +66,7 @@ public class CollectionData : IData
 
     public T? Single<T>(Func<T, bool>? expression) where T: class
     {
-        var collections = GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
-                .FirstOrDefault(f => f.FieldType == typeof(List<T>) && f.IsInitOnly)
-                ?? throw new InvalidOperationException("Unsupported type");
-
-        var value = collections.GetValue(this) ?? throw new InvalidDataException();
-
-        var collection = ((List<T>)value).AsQueryable();
+        var collection = Reflection<T>().AsQueryable();
 
         if (expression is null) return null;
 
@@ -76,16 +75,7 @@ public class CollectionData : IData
 
     public void Add<T>(T item) where T : class
     {
-
-        var collections = GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
-                .FirstOrDefault(f => f.FieldType == typeof(List<T>) && f.IsInitOnly)
-                ?? throw new InvalidOperationException("Unsupported type");
-
-        var value = collections.GetValue(this) ?? throw new InvalidDataException();
-
-        var collection = ((List<T>)value);
-        collection.Add(item);
-
+        Reflection<T>().Add(item);
     }
 
     public IBooking RentVehicle(IVehicle vehicle, IPerson customer)

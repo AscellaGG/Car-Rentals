@@ -9,13 +9,9 @@ namespace Car_Rental.Business.Classes;
 public class BookingProcessor
 {
     private readonly IData _db;
-    
+    private InputValues Iv = new InputValues();
 
-    public string VehicleError = string.Empty;
-    public string CustomerError = string.Empty;
-    public int SelectedSSN { get; set; }
-    public int? DistanceReturned { get; set; }
-    public bool InputDisabled { get; set; }
+    
 
     public BookingProcessor(IData db) => _db = db;
 
@@ -49,44 +45,44 @@ public class BookingProcessor
         return _db.Single<IBooking>(b => b.Vehicle.Id == vehicleID);
     }
 
-    public void AddVehicle(NewVehicle vehicle)
+    public void AddVehicle()
     {
         try
         {
-            if (vehicle.Type == VehicleTypes.Motorcycle)
+            if (Iv.Type == VehicleTypes.Motorcycle)
             {
-                _db.Add<IVehicle>(new Motorcycle(_db.NextVehicleId, vehicle.RegNo, vehicle.Type, vehicle.Make, vehicle.Odometer, vehicle.CostKm, vehicle.CostDay));
+                _db.Add<IVehicle>(new Motorcycle(_db.NextVehicleId, Iv.RegNo, Iv.Type, Iv.Make, Iv.Odometer, Iv.CostKm, Iv.CostDay));
             }
             else
             {
-                _db.Add<IVehicle>(new Car(_db.NextVehicleId, vehicle.RegNo, vehicle.Type, vehicle.Make, vehicle.Odometer, vehicle.CostKm, vehicle.CostDay));
+                _db.Add<IVehicle>(new Car(_db.NextVehicleId, Iv.RegNo, Iv.Type, Iv.Make, Iv.Odometer, Iv.CostKm, Iv.CostDay));
             }
-            VehicleError = string.Empty;
+            Iv.VehicleError = string.Empty;
         }
         catch (Exception ex)
         {
-            VehicleError = ex.Message.ToString();
+            Iv.VehicleError = ex.Message.ToString();
         }
     }
 
-    public void AddPerson(NewPerson person)
+    public void AddPerson()
     {
         try
         {
-            _db.Add<IPerson>(new Customer(_db.NextPersonId, person.FirstName, person.LastName, person.SSN));
-            CustomerError = string.Empty;
+            _db.Add<IPerson>(new Customer(_db.NextPersonId, Iv.FirstName, Iv.LastName, Iv.SSN));
+            Iv.CustomerError = string.Empty;
         }
         catch(Exception ex) 
         {
-            CustomerError = ex.Message.ToString();
+            Iv.CustomerError = ex.Message.ToString();
         }
     }
 
     public async Task<IBooking> RentVehicle(IPerson customer, IVehicle vehicle)
     {
-        InputDisabled = true;
+        Iv.InputDisabled = true;
         await Task.Delay(500);
-        InputDisabled = false;
+        Iv.InputDisabled = false;
 
         return _db.RentVehicle(vehicle, customer);
     }
@@ -95,16 +91,16 @@ public class BookingProcessor
     {
         try
         {
-            InputDisabled = true;
+            Iv.InputDisabled = true;
             await Task.Delay(1000);
-            InputDisabled = false;
+            Iv.InputDisabled = false;
 
-            VehicleError = string.Empty;
-            return _db.ReturnVehicle(GetBooking(vehicle.Id), (int)DistanceReturned);
+            Iv.VehicleError = string.Empty;
+            return _db.ReturnVehicle(GetBooking(vehicle.Id), (int)Iv.DistanceReturned);
         }
         catch (Exception ex)
         {
-            VehicleError = "Distance can not be empty or negative!";
+            Iv.VehicleError = "Distance can not be empty or negative!";
             return null;
         }
     }
@@ -114,19 +110,22 @@ public class BookingProcessor
     public VehicleTypes GetVehicleType(string name) => _db.GetVehicleType(name);
 }
 
-public class NewVehicle
+public class InputValues
 {
+    public string VehicleError = string.Empty;
+    public string CustomerError = string.Empty;
+    public int SelectedSSN { get; set; }
+    public int? DistanceReturned { get; set; }
+    public bool InputDisabled { get; set; }
+
     public string RegNo { get; set; }
     public VehicleTypes Type { get; set; }
     public string Make { get; set; }
     public int Odometer { get; set; }
     public double CostKm { get; set; }
     public int CostDay { get; set; }
-}
 
-public class NewPerson
-{
     public int SSN { get; set; }
     public string LastName { get; set; }
-    public string FirstName { get; set; } 
+    public string FirstName { get; set; }
 }
