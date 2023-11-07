@@ -17,6 +17,11 @@ public class Customer : IPerson
 
     public Customer(int id, string firstName, string lastName, int ssn)
     {
+        if(firstName == null || firstName == string.Empty || lastName == null || lastName == string.Empty || ssn <= 0)
+        {
+            throw new ArgumentException("You missed something!");
+        }
+
         Id = id;
         FirstName = firstName;
         LastName = lastName;

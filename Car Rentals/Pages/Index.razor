@@ -18,6 +18,11 @@
         <h1>Car Rentals</h1>
     </header>
 
+    @if(bp.VehicleError.Length > 0)
+    {
+        <h3 class="alert alert-warning" role="alert">@bp.VehicleError</h3>    
+    }
+    
     <section class="vehicles p-3 my-4 bg-body rounded-1">
         <h4 class="p-2">Vehicles</h4>
 
@@ -48,7 +53,7 @@
                             }
                         </select>
                     </td>
-                    <td><input type="number" min="0" disabled="@bp.InputDisabled" @bind="NewVehicle.Odometer"></td>
+                    <td><input disabled="@bp.InputDisabled" @bind="NewVehicle.Odometer"></td>
                     <td><input type="number" min="0" disabled="@bp.InputDisabled" @bind="NewVehicle.CostKm"></td>
                     <td><input type="number" min="0" disabled="@bp.InputDisabled" @bind="NewVehicle.CostDay"></td>
                     <td></td>
@@ -144,6 +149,11 @@
         </table>
     </section>
 
+    @if (bp.CustomerError.Length > 0)
+    {
+        <h3 class="alert alert-warning" role="alert">@bp.CustomerError</h3>
+    }
+
     <section class="customers p-3 my-4 bg-body rounded-1">
         <h4 class="p-2">Customers</h4>
 
@@ -159,10 +169,10 @@
             <tbody>
 
                 <tr>
-                    <td><input disabled="@bp.InputDisabled" @bind ="NewPerson.SSN" type="number" min="0" /></td>
-                    <td><input disabled="@bp.InputDisabled" @bind="NewPerson.LastName"></td>
-                    <td><input disabled="@bp.InputDisabled" @bind="NewPerson.FirstName"></td>
-                    <td><button disabled="@bp.InputDisabled" class="btn btn-primary" @onclick="(()=>bp.AddPerson(NewPerson))">Add</button></td>
+                    <td><input @bind ="NewPerson.SSN" type="number" min="0" /></td>
+                    <td><input @bind="NewPerson.LastName"></td>
+                    <td><input @bind="NewPerson.FirstName"></td>
+                    <td><button class="btn btn-primary" @onclick="(()=>bp.AddPerson(NewPerson))">Add</button></td>
                 </tr>
 
                 @if(bp.GetCustomers() is not null)

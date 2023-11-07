@@ -14,6 +14,19 @@ public class Vehicle : IVehicle
     public int CostDay { get; set; }
     public VehicleStatuses VehicleStatus { get; set; }
 
-    public Vehicle(int id, string regNo, VehicleTypes vehicleType, string make, int odometer, double costKm, int costDay) =>
-    (Id, RegNo, VehicleType, Make, Odometer, CostKm, CostDay, VehicleStatus) = (id, regNo, vehicleType, make, odometer, costKm, costDay, VehicleStatuses.Available);
+    public Vehicle(int id, string regNo, VehicleTypes vehicleType, string make, int odometer, double costKm, int costDay)
+    {
+        if(odometer <= 0 || costKm <= 0 || costDay <= 0 || regNo == null || regNo == string.Empty || make == null || make == string.Empty)
+        {
+            throw new ArgumentException("Bad input!");
+        }
+        Id = id;
+        RegNo = regNo;
+        VehicleType = vehicleType;
+        Make = make;
+        Odometer = odometer;
+        CostKm = costKm;
+        CostDay = costDay;
+        VehicleStatus = VehicleStatuses.Available;
+    }
 }

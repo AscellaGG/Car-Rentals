@@ -41,6 +41,8 @@ public class Booking : IBooking
         }
     }
 
+
+    //Used when creating existing data on start to have returns set to another date than today, in all other cases the proper return is used (leftover from earlier)
     public void Return(DateTime dateReturned, int kmReturned)
     {
         BookingSatus = BookingSatus.Closed;

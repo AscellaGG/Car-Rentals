@@ -37,23 +37,11 @@ public class CollectionData : IData
         _customers.Add(new Customer(NextPersonId, "Bella", "Goth", 35734));
         _customers.Add(new Customer(NextPersonId, "Don", "Lothario", 54841));
 
-        _bookings.Add(new Booking(NextBookingId, _vehicles[0], _customers[0], _vehicles[0].Odometer, new DateTime(2023, 9, 9))); //Get customer by ID?
-        _bookings.Add(new Booking(NextBookingId, _vehicles[1], _customers[1], _vehicles[1].Odometer, new DateTime(2023, 9, 9))); 
-        _bookings[^1].Return(new DateTime(2023, 9, 10), 23000);
-        _bookings.Add(new Booking(NextBookingId, _vehicles[4], _customers[^1], _vehicles[4].Odometer, new DateTime(2023, 9, 1)));
-        _bookings[^1].Return(new DateTime(2023, 9, 6), 35000);
-    }
-
-    public void AddVehicle(string regNo,VehicleTypes type, string make, int odometer, double costKm, int costDay)
-    {
-        if(type == VehicleTypes.Motorcycle)
-        {
-            _vehicles.Add(new Motorcycle(NextVehicleId, regNo, type, make, odometer, costKm, costDay));
-        }
-        else
-        {
-            _vehicles.Add(new Car(NextVehicleId, regNo, type, make, odometer, costKm, costDay));
-        }
+        _bookings.Add(new Booking(NextBookingId, _vehicles[0], _customers[0], _vehicles[0].Odometer, new DateTime(2023, 10, 9))); //Get customer by ID?
+        _bookings.Add(new Booking(NextBookingId, _vehicles[1], _customers[1], _vehicles[1].Odometer, new DateTime(2023, 11, 2))); 
+        _bookings[^1].Return(new DateTime(2023, 11, 10), 23000);
+        _bookings.Add(new Booking(NextBookingId, _vehicles[4], _customers[^1], _vehicles[4].Odometer, new DateTime(2023, 11, 1)));
+        _bookings[^1].Return(new DateTime(2023, 11, 6), 35000);
     }
 
     public List<T> Get<T>(Func<T, bool>? expression) where T : class
@@ -88,6 +76,7 @@ public class CollectionData : IData
 
     public void Add<T>(T item) where T : class
     {
+
         var collections = GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
                 .FirstOrDefault(f => f.FieldType == typeof(List<T>) && f.IsInitOnly)
                 ?? throw new InvalidOperationException("Unsupported type");
@@ -109,6 +98,11 @@ public class CollectionData : IData
 
     public IBooking ReturnVehicle(IBooking booking, int distanceReturned)
     {
+        if(distanceReturned < 0)
+        {
+            throw new ArgumentOutOfRangeException();
+        }
+
         var vehicle = Single<IVehicle>(v => v.Id == booking.Vehicle.Id);
 
         booking.BookingSatus = BookingSatus.Closed;
@@ -122,5 +116,6 @@ public class CollectionData : IData
         vehicle.VehicleStatus = VehicleStatuses.Available;
 
         return booking;
+
     }    
 }

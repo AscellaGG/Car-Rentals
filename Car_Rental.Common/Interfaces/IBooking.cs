@@ -16,5 +16,7 @@ public interface IBooking
     public double? Cost {  get; set; }
     public BookingSatus BookingSatus { get; set; }
 
+
+    //Used when creating existing data on start to have returns set to another date than today, in all other cases the proper return is used 
     public void Return(DateTime dateReturned, int kmReturned);
 }
