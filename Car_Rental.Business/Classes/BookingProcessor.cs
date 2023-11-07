@@ -9,9 +9,11 @@ namespace Car_Rental.Business.Classes;
 public class BookingProcessor
 {
     private readonly IData _db;
-    private InputValues Iv = new InputValues();
 
-    
+    public string VehicleError = string.Empty;
+    public string CustomerError = string.Empty;
+    public bool InputDisabled { get; set; }
+
 
     public BookingProcessor(IData db) => _db = db;
 
@@ -26,7 +28,7 @@ public class BookingProcessor
         return _db.Get<IPerson>(c => c != null);
     }
 
-    public IEnumerable<IVehicle> GetVehicles(VehicleStatuses status = default)
+    public IEnumerable<IVehicle> GetVehicles()
     {
         //return _db.GetVehicles(status);
         return _db.Get<IVehicle>(v => v != null);
@@ -40,12 +42,7 @@ public class BookingProcessor
 
     public IVehicle GetVehicle(int vehicleId) => _db.Single<IVehicle>(v => v.Id.Equals(vehicleId));
     
-    public IBooking GetBooking(int vehicleID)
-    {
-        return _db.Single<IBooking>(b => b.Vehicle.Id == vehicleID);
-    }
-
-    public void AddVehicle()
+    public void AddVehicle(InputValues Iv)
     {
         try
         {
@@ -57,50 +54,53 @@ public class BookingProcessor
             {
                 _db.Add<IVehicle>(new Car(_db.NextVehicleId, Iv.RegNo, Iv.Type, Iv.Make, Iv.Odometer, Iv.CostKm, Iv.CostDay));
             }
-            Iv.VehicleError = string.Empty;
+            VehicleError = string.Empty;
         }
         catch (Exception ex)
         {
-            Iv.VehicleError = ex.Message.ToString();
+            VehicleError = ex.Message.ToString();
         }
     }
 
-    public void AddPerson()
+    public void AddPerson(InputValues Iv)
     {
         try
         {
             _db.Add<IPerson>(new Customer(_db.NextPersonId, Iv.FirstName, Iv.LastName, Iv.SSN));
-            Iv.CustomerError = string.Empty;
+            CustomerError = string.Empty;
         }
         catch(Exception ex) 
         {
-            Iv.CustomerError = ex.Message.ToString();
+            CustomerError = ex.Message.ToString();
         }
     }
 
     public async Task<IBooking> RentVehicle(IPerson customer, IVehicle vehicle)
     {
-        Iv.InputDisabled = true;
+        InputDisabled = true;
         await Task.Delay(500);
-        Iv.InputDisabled = false;
+        InputDisabled = false;
 
         return _db.RentVehicle(vehicle, customer);
     }
 
-    public async Task<IBooking> ReturnVehicle(IVehicle vehicle)
+    public async Task<IBooking> ReturnVehicle(IVehicle vehicle, InputValues Iv)
     {
         try
         {
-            Iv.InputDisabled = true;
+            InputDisabled = true;
             await Task.Delay(1000);
-            Iv.InputDisabled = false;
+            InputDisabled = false;
 
-            Iv.VehicleError = string.Empty;
-            return _db.ReturnVehicle(GetBooking(vehicle.Id), (int)Iv.DistanceReturned);
+            VehicleError = string.Empty;
+            return _db.ReturnVehicle(vehicle.Id, (int)Iv.DistanceReturned);
         }
         catch (Exception ex)
         {
-            Iv.VehicleError = "Distance can not be empty or negative!";
+            VehicleError = ex.Message.ToString();
+            //VehicleError = "Distance can not be empty or negative!";
+
+            InputDisabled = false;
             return null;
         }
     }
@@ -112,19 +112,17 @@ public class BookingProcessor
 
 public class InputValues
 {
-    public string VehicleError = string.Empty;
-    public string CustomerError = string.Empty;
-    public int SelectedSSN { get; set; }
-    public int? DistanceReturned { get; set; }
-    public bool InputDisabled { get; set; }
-
+    
     public string RegNo { get; set; }
     public VehicleTypes Type { get; set; }
     public string Make { get; set; }
     public int Odometer { get; set; }
     public double CostKm { get; set; }
     public int CostDay { get; set; }
+    public int? DistanceReturned { get; set; }
 
+
+    public int SelectedSSN { get; set; }
     public int SSN { get; set; }
     public string LastName { get; set; }
     public string FirstName { get; set; }

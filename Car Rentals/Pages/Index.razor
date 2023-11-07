@@ -12,9 +12,9 @@
         <h1>Car Rentals</h1>
     </header>
 
-    @if(InVal.VehicleError.Length > 0)
+    @if(bp.VehicleError.Length > 0)
     {
-        <h3 class="alert alert-warning" role="alert">@InVal.VehicleError</h3>    
+        <h3 class="alert alert-warning" role="alert">@bp.VehicleError</h3>    
     }
     
     <section class="vehicles p-3 my-4 bg-body rounded-1">
@@ -37,23 +37,23 @@
             <tbody>
 
                 <tr>
-                    <td><input disabled="@InVal.InputDisabled" @bind="InVal.RegNo"></td>
-                    <td><input disabled="@InVal.InputDisabled" @bind="InVal.Make"></td>
+                    <td><input disabled="@bp.InputDisabled" @bind="InVal.RegNo"></td>
+                    <td><input disabled="@bp.InputDisabled" @bind="InVal.Make"></td>
                     <td>
-                        <select disabled="@InVal.InputDisabled" class="form-select" aria-label="Default select example" @bind="InVal.Type">
+                        <select disabled="@bp.InputDisabled" class="form-select" aria-label="Default select example" @bind="InVal.Type">
                             @foreach(var t in bp.VehicleTypeNames)
                             {
                                 <option value="@t">@t.ToString()</option>
                             }
                         </select>
                     </td>
-                    <td><input disabled="@InVal.InputDisabled" @bind="InVal.Odometer"></td>
-                    <td><input type="number" min="0" disabled="@InVal.InputDisabled" @bind="InVal.CostKm"></td>
-                    <td><input type="number" min="0" disabled="@InVal.InputDisabled" @bind="InVal.CostDay"></td>
+                    <td><input disabled="@bp.InputDisabled" @bind="InVal.Odometer"></td>
+                    <td><input type="number" min="0" disabled="@bp.InputDisabled" @bind="InVal.CostKm"></td>
+                    <td><input type="number" min="0" disabled="@bp.InputDisabled" @bind="InVal.CostDay"></td>
                     <td></td>
-                    <td><button disabled="@InVal.InputDisabled" class="btn btn-primary" @onclick="(()=>bp.AddVehicle())">Add</button></td>
+                    <td><button disabled="@bp.InputDisabled" class="btn btn-primary" @onclick="(()=>bp.AddVehicle(InVal))">Add</button></td>
                     <td>
-                        @if(InVal.InputDisabled)
+                        @if(bp.InputDisabled)
                         {
                             <p class="car-status bg-warning">Processing...</p>
                         }
@@ -76,16 +76,16 @@
                         
                         @if (v.VehicleStatus == VehicleStatuses.Booked)
                         {
-                            <td><input disabled="@InVal.InputDisabled" placeholder="Distance" @bind="InVal.DistanceReturned"></td>
+                            <td><input disabled="@bp.InputDisabled" placeholder="Distance" @bind="InVal.DistanceReturned"></td>
                             <td>
-                                <button disabled="@InVal.InputDisabled" class="btn btn-primary" @onclick="async () =>
-                                await bp.ReturnVehicle(v)">Return</button></td>
+                                <button disabled="@bp.InputDisabled" class="btn btn-primary" @onclick="async () =>
+                                await bp.ReturnVehicle(v, InVal)">Return</button></td>
                             <td><p class="car-status bg-danger">@v.VehicleStatus</p></td>                            
                         }
                         else
                         {
                             <td>
-                                <select disabled="@InVal.InputDisabled" class="form-select" aria-label="Default select example" @bind="InVal.SelectedSSN">
+                                <select disabled="@bp.InputDisabled" class="form-select" aria-label="Default select example" @bind="InVal.SelectedSSN">
                                     <option selected="selected" value="SSN" disabled>SSN</option>
                                     @foreach (var c in bp.GetCustomers())
                                     {
@@ -94,7 +94,7 @@
                                 </select>
                             </td>
                             <td>
-                                <button disabled="@InVal.InputDisabled" type="button" class="btn btn-primary" @onclick="async () =>
+                                <button disabled="@bp.InputDisabled" type="button" class="btn btn-primary" @onclick="async () =>
                                 await bp.RentVehicle(bp.GetPerson(InVal.SelectedSSN), v)">
                                     Rent
                                 </button>
@@ -148,9 +148,9 @@
         </table>
     </section>
 
-    @if (InVal.CustomerError.Length > 0)
+    @if (bp.CustomerError.Length > 0)
     {
-        <h3 class="alert alert-warning" role="alert">@InVal.CustomerError</h3>
+        <h3 class="alert alert-warning" role="alert">@bp.CustomerError</h3>
     }
 
     <section class="customers p-3 my-4 bg-body rounded-1">
@@ -171,7 +171,7 @@
                     <td><input @bind="InVal.SSN" type="number" min="0" /></td>
                     <td><input @bind="InVal.LastName"></td>
                     <td><input @bind="InVal.FirstName"></td>
-                    <td><button class="btn btn-primary" @onclick="(()=>bp.AddPerson())">Add</button></td>
+                    <td><button class="btn btn-primary" @onclick="(()=>bp.AddPerson(InVal))">Add</button></td>
                 </tr>
 
                 @if(bp.GetCustomers() is not null)

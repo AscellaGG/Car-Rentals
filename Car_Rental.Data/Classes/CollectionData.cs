@@ -82,20 +82,21 @@ public class CollectionData : IData
     {
         Add<IBooking>(new Booking(NextBookingId, vehicle, customer, vehicle.Odometer, DateTime.Now));
         _vehicles.Single(v => v.Id.Equals(vehicle.Id)).VehicleStatus = VehicleStatuses.Booked;
-        return Single<IBooking>(b => b.Id == vehicle.Id);
+        return Single<IBooking>(b => b.Vehicle.Id == vehicle.Id && b.BookingSatus == BookingSatus.Open);
     }
 
 
-    public IBooking ReturnVehicle(IBooking booking, int distanceReturned)
+    public IBooking ReturnVehicle(int vehicleID, int distanceReturned)
     {
         if(distanceReturned < 0)
         {
-            throw new ArgumentOutOfRangeException();
+            throw new ArgumentException("Distance cant be negative");
         }
 
-        var vehicle = Single<IVehicle>(v => v.Id == booking.Vehicle.Id);
+        var vehicle = Single<IVehicle>(v => v.Id == vehicleID);
+        var booking = Single<IBooking>(b => b.Vehicle.Id == vehicleID && b.BookingSatus == BookingSatus.Open);
+        
 
-        booking.BookingSatus = BookingSatus.Closed;
         booking.DateReturned = DateTime.Now;
         booking.KmReturned = vehicle.Odometer + distanceReturned;
         var daysRented = DateTime.Now.Duration(booking.DateRented);
@@ -104,6 +105,8 @@ public class CollectionData : IData
 
         vehicle.Odometer = (int)booking.KmReturned;
         vehicle.VehicleStatus = VehicleStatuses.Available;
+
+        booking.BookingSatus = BookingSatus.Closed;
 
         return booking;
 
